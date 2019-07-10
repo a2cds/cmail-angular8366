@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Email } from './models/email';
 
 @Component({
   selector:'app-root',
@@ -7,10 +8,27 @@ import { Component } from "@angular/core";
 })
 
 export class AppComponent {
-  title = "cmail";
-  isNewEmailFormOpen = false;
+  //title = "cmail";
+  private _isNewEmailFormOpen = false;
+
+  email:Email = new Email();
+
+  get isNewEmailFormOpen(){
+    return this._isNewEmailFormOpen;
+  }
+
+  set isNewEmailFormOpen(value){
+    this._isNewEmailFormOpen = value;
+  }
 
   toggleNewEmailForm(){
-    this.isNewEmailFormOpen = !this.isNewEmailFormOpen;
+    this._isNewEmailFormOpen = !this.isNewEmailFormOpen;
+  }
+
+  handleNewEmail(event: Event){
+    event.preventDefault();
+    console.log(this.email);
+  
+
   }
 }
