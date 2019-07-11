@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Email } from './models/email';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector:'app-root',
@@ -11,7 +12,8 @@ export class AppComponent {
   //title = "cmail";
   private _isNewEmailFormOpen = false;
 
-  email:Email = new Email();
+  emailList = [];
+  email:Email = new Email({destinatario: '', assunto: '', conteudo: ''});
 
   get isNewEmailFormOpen(){
     return this._isNewEmailFormOpen;
@@ -25,10 +27,26 @@ export class AppComponent {
     this._isNewEmailFormOpen = !this.isNewEmailFormOpen;
   }
 
-  handleNewEmail(event: Event){
-    event.preventDefault();
-    console.log(this.email);
-  
+  handleNewEmail(formEmail: NgForm){
+
+    if(formEmail.invalid){
+      formEmail.controls.para.markAsTouched;
+      formEmail.controls.assunto.markAsTouched;
+      return;
+    }
+
+    let newEmail = new Email(this.email);
+
+    this.emailList.push(newEmail);
+
+    /*this.email = {
+      destinatario: '',
+      assunto: '',
+      conteudo: ''
+    }*/
+    formEmail.reset();
+
+    this.toggleNewEmailForm();
 
   }
 }
