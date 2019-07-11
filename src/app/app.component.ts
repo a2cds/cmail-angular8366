@@ -30,8 +30,8 @@ export class AppComponent {
   handleNewEmail(formEmail: NgForm){
 
     if(formEmail.invalid){
-      formEmail.controls.para.markAsTouched;
-      formEmail.controls.assunto.markAsTouched;
+      formEmail.controls['para'].markAsTouched;
+      formEmail.controls['assunto'].markAsTouched;
       return;
     }
 
@@ -39,11 +39,11 @@ export class AppComponent {
 
     this.emailList.push(newEmail);
 
-    /*this.email = {
+    this.email = {
       destinatario: '',
       assunto: '',
       conteudo: ''
-    }*/
+    }
     formEmail.reset();
 
     this.toggleNewEmailForm();
