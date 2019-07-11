@@ -4,6 +4,9 @@ import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CadastroModule } from './modules/cadastro/cadastro.module';
+import { CaixaDeEntradaModule } from './modules/caixa-de-entrada/caixa-de-entrada.module';
+import { LoginModule } from './modules/login/login.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,10 @@ import { HeaderComponent } from './components/header/header.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    CadastroModule,
+    CaixaDeEntradaModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
