@@ -9,7 +9,8 @@
         "@schematics/angular:component": {
           "prefix": "cmail",
           "inlineStyle": true,
-          "spec": false
+          "spec": false,
+          "export": true
         }
       },
       "root": "",

@@ -1,24 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
 import { CadastroModule } from './modules/cadastro/cadastro.module';
 import { CaixaDeEntradaModule } from './modules/caixa-de-entrada/caixa-de-entrada.module';
 import { LoginModule } from './modules/login/login.module';
+import { RoteamentoModule } from './app.routes';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     CadastroModule,
     CaixaDeEntradaModule,
-    LoginModule
+    LoginModule,
+    RoteamentoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
