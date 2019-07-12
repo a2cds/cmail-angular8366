@@ -11,6 +11,11 @@
           "inlineStyle": true,
           "spec": false,
           "export": true
+        },
+        "@schematics/angular:directive": {
+          "spec": false,
+          "prefix": "cmail",
+          "export": true
         }
       },
       "root": "",

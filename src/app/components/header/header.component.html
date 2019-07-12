@@ -2,12 +2,12 @@
     <button class="mdl-layout__drawer-button" (click)="toggleMenu()">
       <span class="material-icons"></span>
     </button>
-  
+
     <div class="mdl-layout__header-row">
       <span class="headerGlobal__title mdl-layout-title">Título da página atual</span>
-  
+
       <div class="mdl-layout-spacer"></div>
-  
+
       <!-- Search -->
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
            mdl-textfield--floating-label mdl-textfield--align-right is-focused mdl-cell--hide-phone ">
@@ -27,7 +27,7 @@
     <span class="mdl-layout-title">
       <img class="headerGlobal__logo" src="assets/img/logo.svg" alt="CMail">
     </span>
-  
+
     <header class="headerGlobal__userInfo">
       <img src="http://placehold.it/48x48" class="headerGlobal__userInfoAvatar">
       <div class="headerGlobal__userInfoData">
@@ -36,15 +36,15 @@
         <div class="mdl-layout-spacer"></div>
       </div>
     </header>
-  
+
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link">
+      <a routerLink="/login" class="mdl-navigation__link">
         <span class="material-icons">person</span> Login
       </a>
-      <a class="mdl-navigation__link">
+      <a routerLink="/cadastro" class="mdl-navigation__link">
         <span class="material-icons">create</span> Cadastro
       </a>
-      <a class="mdl-navigation__link">
+      <a routerLink="/inbox" class="mdl-navigation__link">
         <span class="material-icons">inbox</span> Caixa de Entrada
       </a>
       <a class="mdl-navigation__link">
