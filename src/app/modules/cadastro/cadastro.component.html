@@ -5,23 +5,28 @@
       <div class="mdl-grid">
         <form [formGroup]="formCadastro" (ngSubmit)="cadastrar()">
 
-          <cmail-form-group label="Nome" idCampo="nome">
+          <cmail-form-group label="Nome" idCampo="nome"
+            [validation]="formCadastro.get('nome').invalid && formCadastro.get('nome').touched">
             <input formControlName="nome" required type="text" name="nome" cmailFormField>
             <span class="mdl-textfield__error">Informar um nome é obrigatório!</span>
           </cmail-form-group>
-          <cmail-form-group label="Username" idCampo="username">
+          <cmail-form-group label="Username" idCampo="username"
+            [validation]="formCadastro.get('username').invalid && formCadastro.get('username').touched">
             <input formControlName="username" required type="text" name="username" cmailFormField>
             <span class="mdl-textfield__error">Informar um Usuário é obrigatório!</span>
           </cmail-form-group>
-          <cmail-form-group label="Senha" idCampo="senha">
+          <cmail-form-group label="Senha" idCampo="senha"
+            [validation]="formCadastro.get('senha').invalid && formCadastro.get('senha').touched">
             <input formControlName="senha" required type="password" name="senha" cmailFormField>
             <span class="mdl-textfield__error">Informar uma Senha é obrigatório!</span>
           </cmail-form-group>
-          <cmail-form-group label="Avatar" idCampo="avatar">
+          <cmail-form-group label="Avatar" idCampo="avatar"
+            [validation]="formCadastro.get('avatar').invalid && formCadastro.get('avatar').touched">
             <input formControlName="avatar" required type="text" name="avatar" cmailFormField>
             <span class="mdl-textfield__error">Informar um Avatar é obrigatório!</span>
           </cmail-form-group>
-          <cmail-form-group label="Telefone" idCampo="telefone">
+          <cmail-form-group label="Telefone" idCampo="telefone"
+            [validation]="formCadastro.get('telefone').invalid && formCadastro.get('telefone').touched">
             <input formControlName="telefone" required type="text" name="telefone" cmailFormField>
             <span class="mdl-textfield__error">Informar um Avatar é obrigatório!</span>
           </cmail-form-group>
