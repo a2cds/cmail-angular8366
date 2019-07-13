@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { UserInput } from 'src/app/models/dto/user-input';
 
 @Component({
   selector: 'cmail-cadastro',
@@ -12,10 +14,11 @@ export class CadastroComponent implements OnInit {
     nome: new FormControl(''),
     username: new FormControl(''),
     senha: new FormControl(''),
-    avatar: new FormControl('')
+    avatar: new FormControl(''),
+    telefone: new FormControl('')
   })
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -26,9 +29,16 @@ export class CadastroComponent implements OnInit {
       return;
     }
 
-    console.log(this.formCadastro.value);
-    this.formCadastro.reset();
+    const dtoUser = new UserInput(this.formCadastro.value);
 
+    this.http
+      .post('http://localhost:3200/users', dtoUser)
+      .subscribe(
+        resposta => console.log(resposta),
+        erro => console.error(erro),
+        () => {
+          this.formCadastro.reset();
+        }
+      );
   }
-
 }

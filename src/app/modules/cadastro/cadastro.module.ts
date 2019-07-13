@@ -4,6 +4,7 @@ import { CadastroComponent } from './cadastro.component';
 import { RouterModule } from '@angular/router';
 import { SharedComponentsModule } from 'src/app/components/shared-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 
 
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     SharedComponentsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class CadastroModule { }
