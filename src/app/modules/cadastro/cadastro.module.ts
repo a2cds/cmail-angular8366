@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SharedComponentsModule } from 'src/app/components/shared-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
+import { RoteamentoModule } from 'src/app/app.routes';
 
 
 

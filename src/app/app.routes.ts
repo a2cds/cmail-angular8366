@@ -10,6 +10,7 @@ const rotasApp: Routes = [
   { path: 'inbox', component: CaixaDeEntradaComponent },
   { path: 'cadastro', component: CadastroComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'login/:nome', component: LoginComponent },
   { path: '**', redirectTo: '' }
 ]
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { UserInput } from 'src/app/models/dto/user-input';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cmail-cadastro',
@@ -18,7 +19,8 @@ export class CadastroComponent implements OnInit {
     telefone: new FormControl('')
   })
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private roteador: Router) { }
 
   ngOnInit() {
   }
@@ -34,11 +36,10 @@ export class CadastroComponent implements OnInit {
     this.http
       .post('http://localhost:3200/users', dtoUser)
       .subscribe(
-        resposta => console.log(resposta),
-        erro => console.error(erro),
-        () => {
-          this.formCadastro.reset();
-        }
+        (userApi: any) => {
+          this.roteador.navigate(['login', userApi.name])
+        },
+        erro => console.error(erro)
       );
   }
 }
