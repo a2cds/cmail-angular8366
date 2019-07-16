@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl, Validators, Form } from '@angular/forms';
+import { HttpClient, HttpResponseBase } from '@angular/common/http';
 import { UserInput } from 'src/app/models/dto/user-input';
 import { Router } from '@angular/router';
+import { map, catchError } from 'rxjs/operators'
 
 @Component({
   selector: 'cmail-cadastro',
@@ -12,12 +13,14 @@ import { Router } from '@angular/router';
 export class CadastroComponent implements OnInit {
 
   formCadastro = new FormGroup({
-    nome: new FormControl(''),
-    username: new FormControl(''),
-    senha: new FormControl(''),
-    avatar: new FormControl(''),
-    telefone: new FormControl('')
+    nome: new FormControl('', Validators.required),
+    username: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    senha: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    avatar: new FormControl('', Validators.required, this.validaImagem.bind(this)),
+    telefone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{4}-?[0-9]{4}[0-9]?')])
   })
+
+  msgErro = '';
 
   constructor(private http: HttpClient,
     private roteador: Router) { }
@@ -25,8 +28,23 @@ export class CadastroComponent implements OnInit {
   ngOnInit() {
   }
 
+  validaImagem(controle: FormControl) {
+    return this.http
+      .head(controle.value, { observe: 'response' })
+      .pipe(
+        map((resposta: HttpResponseBase) => {
+          return true
+        })
+        , catchError((httpError) => {
+          return [{ urlInvalida: true }]
+        })
+      )
+
+  }
+
   cadastrar() {
     if (this.formCadastro.invalid) {
+      this.formCadastro.markAllAsTouched();
       console.error('Campos precisam ser preenchidos');
       return;
     }
@@ -39,7 +57,9 @@ export class CadastroComponent implements OnInit {
         (userApi: any) => {
           this.roteador.navigate(['login', userApi.name])
         },
-        erro => console.error(erro)
+        erro => {
+          this.msgErro = "Serviço não disponível";
+        }
       );
   }
 }
