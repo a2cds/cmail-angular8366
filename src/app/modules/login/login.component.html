@@ -20,7 +20,7 @@
             </cmail-form-group>
 
             <cmail-form-group idCampo="senha" label="senha" [validation]="senha.invalid && senha.touched">
-              <input required type="password" name="senha" #senha="ngModel" [(ngModel)]="login.senha" cmailFormField
+              <input required type="password" name="senha" #senha="ngModel" [(ngModel)]="login.password" cmailFormField
                 autofocus>
               <span *ngIf="senha.invalid" class="mdl-textfield__error">
                 Informar uma senha é obrigatória!

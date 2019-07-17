@@ -11,31 +11,31 @@
           <cmail-form-group label="Nome" idCampo="nome"
             [validation]="formCadastro.get('nome').invalid && formCadastro.get('nome').touched">
             <input formControlName="nome" required type="text" name="nome" cmailFormField>
-            <span *ngIf="formCadastro.get('nome').errors?.required"
+            <span *ngIf="formCadastro.get('nome').errors['required']"
             class="mdl-textfield__error">Informar um nome é obrigatório!</span>
           </cmail-form-group>
           <cmail-form-group label="Username" idCampo="username"
             [validation]="formCadastro.get('username').invalid && formCadastro.get('username').touched">
             <input formControlName="username" required type="text" name="username" cmailFormField>
-            <span *ngIf="formCadastro.get('username').errors?.required"
+            <span *ngIf="formCadastro.get('username').errors['required']"
             class="mdl-textfield__error">Informar um Usuário é obrigatório!</span>
-            <span *ngIf="formCadastro.get('username').errors?.minlength?.requiredLength"
-            class="mdl-textfield__error">Usuário deve conter pelo menos {{formCadastro.get('username').errors?.minlength?.requiredLength}} caracteres!</span>
+            <span *ngIf="formCadastro.get('username').errors['minlength'].requiredLength"
+            class="mdl-textfield__error">Usuário deve conter pelo menos {{formCadastro.get('username').errors['minlength'].requiredLength}} caracteres!</span>
           </cmail-form-group>
           <cmail-form-group label="Senha" idCampo="senha"
             [validation]="formCadastro.get('senha').invalid && formCadastro.get('senha').touched">
             <input formControlName="senha" required type="password" name="senha" cmailFormField>
-            <span *ngIf="formCadastro.get('senha').errors?.required"
+            <span *ngIf="formCadastro.get('senha').errors['required']"
             class="mdl-textfield__error">Informar uma Senha é obrigatório!</span>
-            <span *ngIf="formCadastro.get('senha').errors?.minlength?.requiredLength"
-            class="mdl-textfield__error">Senha deve conter pelo menos {{formCadastro.get('senha').errors?.minlength?.requiredLength}} caracteres!</span>
+            <span *ngIf="formCadastro.get('senha').errors['minlength'].requiredLength"
+            class="mdl-textfield__error">Senha deve conter pelo menos {{formCadastro.get('senha').errors['minlength'].requiredLength}} caracteres!</span>
           </cmail-form-group>
           <cmail-form-group label="Avatar" idCampo="avatar"
             [validation]="formCadastro.get('avatar').invalid && formCadastro.get('avatar').touched">
             <input formControlName="avatar" required type="text" name="avatar" cmailFormField>
-            <span *ngIf="formCadastro.get('avatar').errors?.required"
+            <span *ngIf="formCadastro.get('avatar').errors['required']"
             class="mdl-textfield__error">Informar um Avatar é obrigatório!</span>
-            <span *ngIf="formCadastro.get('avatar').errors?.urlInvalida"
+            <span *ngIf="formCadastro.get('avatar').errors['urlInvalida']"
             class="mdl-textfield__error">Esta URL tem problemas, está inválida</span>
             <span *ngIf="formCadastro.get('avatar').status === 'PENDING'"
             class="mdl-textfield__error mdl-textfield__checking">Verificando...</span>
@@ -45,9 +45,9 @@
           <cmail-form-group label="Telefone" idCampo="telefone"
             [validation]="formCadastro.get('telefone').invalid && formCadastro.get('telefone').touched">
             <input formControlName="telefone" required type="text" name="telefone" cmailFormField>
-            <span *ngIf="formCadastro.get('telefone').errors?.required"
+            <span *ngIf="formCadastro.get('telefone').errors['required']"
             class="mdl-textfield__error">Informar um Telefone é obrigatório!</span>
-            <span *ngIf="formCadastro.get('telefone').errors?.pattern"
+            <span *ngIf="formCadastro.get('telefone').errors['pattern']"
             class="mdl-textfield__error">Telefone deve estar no padrão 9999-99999</span>
           </cmail-form-group>
 

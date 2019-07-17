@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
     this.httpClient
       .post('http://localhost:3200/login', this.login)
       .subscribe(
-        (response: any) => {
-          console.log(response);
-          localStorage.setItem('cmail-token', response.token);
+        (resposta: any) => {
+          console.log(resposta);
+          localStorage.setItem('cmail-token', resposta.token);
         }, erro => {
           console.log(erro);
         }
