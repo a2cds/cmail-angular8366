@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, Form } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpResponseBase } from '@angular/common/http';
 import { UserInput } from 'src/app/models/dto/user-input';
 import { Router } from '@angular/router';
@@ -60,7 +60,7 @@ export class CadastroComponent implements OnInit {
       .post('http://localhost:3200/users', dtoUser)
       .subscribe(
         (userApi: any) => {
-          this.roteador.navigate(['login', userApi.name])
+          this.roteador.navigate(['login', userApi.username])
         },
         erro => {
           this.msgErro = "Serviço não disponível";

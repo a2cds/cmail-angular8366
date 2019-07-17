@@ -1,7 +1,45 @@
-<p>login works!</p>
-<a routerLink="/inbox" class="mdl-navigation__link">
-  <span class="material-icons">inbox</span> Caixa de Entrada
-</a>
-<a routerLink="/cadastro" class="mdl-navigation__link">
-  <span class="material-icons">create</span> Cadastro
-</a>
+<div class="mdl-layout mdl-js-layout">
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <div class="mdl-grid">
+        <article class="demo-card-wide mdl-card mdl-shadow--2dp">
+          <header class="mdl-card__title">
+            <h1 class="mdl-card__title-text">Bem vindos/as ao CMail!</h1>
+          </header>
+
+          <form (ngSubmit)="handleLogin(formLogin)" #formLogin="ngForm" autocomplete="off"
+            class="mdl-card__supporting-text">
+
+            <!-- aqui os campos do formulário -->
+            <cmail-form-group idCampo="email" label="email" [validation]="email.invalid && email.touched">
+              <input email required type="email" name="email" #email="ngModel" [(ngModel)]="login.email" cmailFormField
+                autofocus>
+              <span *ngIf="email.invalid" class="mdl-textfield__error">
+                Informar um email é obrigatório!
+              </span>
+            </cmail-form-group>
+
+            <cmail-form-group idCampo="senha" label="senha" [validation]="senha.invalid && senha.touched">
+              <input required type="password" name="senha" #senha="ngModel" [(ngModel)]="login.senha" cmailFormField
+                autofocus>
+              <span *ngIf="senha.invalid" class="mdl-textfield__error">
+                Informar uma senha é obrigatória!
+              </span>
+            </cmail-form-group>
+            <!-- aqui os campos do formulário -->
+
+            <div class="mdl-card__actions mdl-card--border">
+              <a routerLink="cadastro" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                Primeiro login? Cadastre-se!
+              </a>
+              <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent entrar">
+                Entrar
+              </button>
+            </div>
+          </form>
+
+        </article>
+      </div>
+    </div>
+  </main>
+</div>
