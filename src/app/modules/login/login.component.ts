@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'cmail-login',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     password: ''
   }
 
-  constructor(private httpClient: HttpClient,
+  constructor(private service: LoginService,
     private roteador: Router) { }
 
   ngOnInit() {
@@ -28,12 +28,12 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.httpClient
-      .post('http://localhost:3200/login', this.login)
+    this.service
+      .autenticar(this.login)
       .subscribe(
         (resposta: any) => {
           console.log(resposta);
-          localStorage.setItem('cmail-token', resposta.token);
+          this.roteador.navigate(['inbox']);
         }, erro => {
           console.log(erro);
         }
