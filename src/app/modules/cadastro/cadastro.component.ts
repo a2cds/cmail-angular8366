@@ -28,16 +28,21 @@ export class CadastroComponent implements OnInit {
   ngOnInit() {
   }
 
+
+
   validaImagem(controle: FormControl) {
+    const urlInvalida = { urlInvalida: true }
     return this.http
       .head(controle.value, { observe: 'response' })
       .pipe(
         map((resposta: HttpResponseBase) => {
-          return true
+          if (resposta.headers.get('Content-Type').includes('image')) {
+            return resposta.ok
+          } else {
+            return urlInvalida
+          }
         })
-        , catchError((httpError) => {
-          return [{ urlInvalida: true }]
-        })
+        , catchError(() => [urlInvalida])
       )
 
   }
