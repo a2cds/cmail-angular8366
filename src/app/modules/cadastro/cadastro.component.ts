@@ -4,6 +4,7 @@ import { HttpClient, HttpResponseBase } from '@angular/common/http';
 import { UserInput } from 'src/app/models/dto/user-input';
 import { Router } from '@angular/router';
 import { map, catchError } from 'rxjs/operators'
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'cmail-cadastro',
@@ -23,7 +24,7 @@ export class CadastroComponent implements OnInit {
   msgErro = '';
 
   constructor(private http: HttpClient,
-    private roteador: Router) { }
+    private roteador: Router, private servico: UserService) { }
 
   ngOnInit() {
   }
@@ -54,13 +55,13 @@ export class CadastroComponent implements OnInit {
       return;
     }
 
-    const dtoUser = new UserInput(this.formCadastro.value);
 
-    this.http
-      .post('http://localhost:3200/users', dtoUser)
+
+    this.servico
+      .cadastrar(this.formCadastro.value)
       .subscribe(
-        (userApi: any) => {
-          this.roteador.navigate(['login', userApi.username])
+        (userOutput) => {
+          this.roteador.navigate(['login', userOutput.username])
         },
         erro => {
           this.msgErro = "Serviço não disponível";
