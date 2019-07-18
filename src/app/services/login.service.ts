@@ -8,22 +8,22 @@ export class LoginService {
 
   url = environment.api + 'login';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  autenticar(dadosLogin){
+  autenticar(dadosLogin) {
     return this.http
-    .post(this.url, dadosLogin)
-    .pipe(
-      map((resposta: any) => {
-localStorage.setItem('cmail-token', resposta.token)
-return {
-  avatarUrl: resposta.avatarUrl,
-  email: resposta.email,
-  name: resposta.name
-}
-      }),
-      catchError(erro => [erro])
-    )
+      .post(this.url, dadosLogin)
+      .pipe(
+        map((resposta: any) => {
+          localStorage.setItem('cmail-token', resposta.token)
+          return {
+            avatarUrl: resposta.avatarUrl,
+            email: resposta.email,
+            name: resposta.name
+          }
+        }),
+        catchError(erro => [erro])
+      )
   }
 
 }
