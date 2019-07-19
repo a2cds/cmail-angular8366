@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Email } from '../../models/email';
 import { NgForm } from '@angular/forms';
+import { EmailService } from 'src/app/services/email.service';
 
 @Component({
   selector: 'cmail-caixa-de-entrada',
@@ -9,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class CaixaDeEntradaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private servico: EmailService) { }
 
   ngOnInit() {
   }
@@ -17,40 +18,40 @@ export class CaixaDeEntradaComponent implements OnInit {
   private _isNewEmailFormOpen = false;
 
   emailList = [];
-  email:Email = new Email({destinatario: '', assunto: '', conteudo: ''});
+  email: Email = new Email({ destinatario: '', assunto: '', conteudo: '' });
 
-  get isNewEmailFormOpen(){
+  get isNewEmailFormOpen() {
     return this._isNewEmailFormOpen;
   }
 
-  set isNewEmailFormOpen(value){
+  set isNewEmailFormOpen(value) {
     this._isNewEmailFormOpen = value;
   }
 
-  toggleNewEmailForm(){
+  toggleNewEmailForm() {
     this._isNewEmailFormOpen = !this.isNewEmailFormOpen;
   }
 
-  handleNewEmail(formEmail: NgForm){
+  handleNewEmail(formEmail: NgForm) {
 
-    if(formEmail.invalid){
+    if (formEmail.invalid) {
       formEmail.controls['para'].markAsTouched;
       formEmail.controls['assunto'].markAsTouched;
       return;
     }
 
-    let newEmail = new Email(this.email);
+    let novoEmail = new Email(this.email);
 
-    this.emailList.push(newEmail);
+    this.servico.enviar(novoEmail)
+      .subscribe(
+        (resposta) => {
+          console.log(resposta);
+          this.emailList.push(novoEmail);
+          formEmail.reset();
 
-    this.email = {
-      destinatario: '',
-      assunto: '',
-      conteudo: ''
-    }
-    formEmail.reset();
-
-    this.toggleNewEmailForm();
-
+          this.toggleNewEmailForm();
+        },
+        erro => console.error(erro)
+      );
   }
 }

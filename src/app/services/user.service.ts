@@ -4,6 +4,7 @@ import { UserInput } from '../models/dto/user-input';
 import { Observable } from 'rxjs';
 import { UserOutput } from '../models/dto/user-output';
 import { map } from 'rxjs/operators';
+import { User } from '../models/user';
 
 
 export class UserService {
@@ -12,15 +13,17 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  cadastrar(dadosFormCadastro): Observable<UserOutput> {
+  cadastrar(dadosFormCadastro): Observable<User> {
 
     const dtoUser = new UserInput(dadosFormCadastro);
 
     return this.httpClient
-      .post(this.url, dtoUser)
+      .post<UserOutput>(this.url, dtoUser)
       .pipe(
-        map((userApi: any) => new UserOutput(userApi))
+        map(userApi => ({
+          nome: userApi.name,
+          usuario: userApi.username
+        }))
       )
-
   }
 }
