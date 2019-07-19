@@ -4,12 +4,13 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormFieldDirective } from './form-group/form-field.directive';
+import { ListItemComponent } from './list-item/list-item.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, FormGroupComponent, FormFieldDirective],
-  exports: [HeaderComponent, FormGroupComponent, FormFieldDirective],
+  declarations: [HeaderComponent, FormGroupComponent, FormFieldDirective, ListItemComponent],
+  exports: [HeaderComponent, FormGroupComponent, FormFieldDirective, ListItemComponent],
   imports: [
     CommonModule,
     RouterModule

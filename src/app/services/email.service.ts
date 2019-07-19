@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Email } from '../models/email';
 import { EmailInput } from '../models/dto/email-input';
+import { EmailOutput } from '../models/dto/email-output';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class EmailService {
@@ -17,12 +20,6 @@ export class EmailService {
 
   enviar(email: Email) {
 
-    /*     let emailDto: EmailInput = {
-          content: email.conteudo,
-          to: email.destinatario,
-          subject: email.assunto
-        } */
-
     let emailDto = new EmailInput(email);
 
     return this.httpClient
@@ -30,8 +27,29 @@ export class EmailService {
 
   }
 
-  carregar() {
-
+  carregar(): Observable<Email[]> {
+    return this.httpClient
+      .get<EmailOutput[]>(this.url, this.headersAuth)
+      .pipe(
+        map(
+          listaEmails => {
+            return listaEmails.map(
+              emailApi => {
+                let email: Email = {
+                  destinatario: emailApi.to,
+                  conteudo: emailApi.content,
+                  assunto: emailApi.subject,
+                  remetente: emailApi.from,
+                  id: emailApi.id,
+                  dataEnvio: emailApi.created_at,
+                  introducaoDoConteudo: emailApi.content.substr(0, 140) + '...'
+                }
+                return email;
+              }
+            )
+          }
+        )
+      )
   }
 
 }
