@@ -27,6 +27,12 @@ export class EmailService {
 
   }
 
+  excluir(id: String) {
+    console.log(this.url + '/' + id);
+    return this.httpClient
+      .delete(this.url + '/' + id, this.headersAuth)
+  }
+
   carregar(): Observable<Email[]> {
     return this.httpClient
       .get<EmailOutput[]>(this.url, this.headersAuth)

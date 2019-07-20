@@ -63,4 +63,22 @@ export class CaixaDeEntradaComponent implements OnInit {
         erro => console.error(erro)
       );
   }
+
+  handleRemoveEmail(vaiExcluir, id) {
+    console.log(vaiExcluir);
+
+    console.log(id);
+    this.servico
+      .excluir(id)
+      .subscribe(
+        resposta => {
+          console.log(resposta)
+          this.emailList = this.emailList.filter(email => email.id != id)
+        },
+        erro => console.error(erro)
+      )
+
+
+  }
+
 }

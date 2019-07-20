@@ -5,14 +5,16 @@
 
       <div class="mdl-grid">
         <ul>
-          <li *ngFor="let email of emailList">
-            <cmail-list-item
+            <cmail-list-item *ngFor="let email of emailList.reverse()"
               [destinatario]="email.destinatario"
               [assunto]="email.assunto"
               [introducaoDoConteudo]="email.introducaoDoConteudo"
-              [dataEnvio]="email.dataEnvio">
+              [dataEnvio]="email.dataEnvio"
+              [id]="email.id"
+              (vaiExcluir)="handleRemoveEmail($event, email.id)"
+              [title]="email.id"
+              >
             </cmail-list-item>
-          </li>
         </ul>
 
 

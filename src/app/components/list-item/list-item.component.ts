@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'cmail-list-item',
@@ -7,14 +7,21 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ListItemComponent implements OnInit {
 
-  @Input() destinatario = '';
-  @Input() assunto = '';
-  @Input() introducaoDoConteudo = '';
-  @Input() dataEnvio = '';
+  @Input() destinatario = "";
+  @Input() assunto = "";
+  @Input() introducaoDoConteudo = "";
+  @Input() dataEnvio = "";
+  @Input() id = "";
+
+  @Output() vaiExcluir = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  excluir() {
+    this.vaiExcluir.emit(this.id);
   }
 
 }
