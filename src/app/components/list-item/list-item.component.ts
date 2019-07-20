@@ -21,7 +21,9 @@ export class ListItemComponent implements OnInit {
   }
 
   excluir() {
-    this.vaiExcluir.emit(this.id);
+    if(confirm('Quer excluir mesmo?')){
+      this.vaiExcluir.emit(this.id);
+    }
   }
 
 }

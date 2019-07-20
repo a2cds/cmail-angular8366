@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormFieldDirective } from './form-group/form-field.directive';
 import { ListItemComponent } from './list-item/list-item.component';
+import { PageDataService } from '../services/page-data.service';
 
 
 
@@ -14,6 +15,7 @@ import { ListItemComponent } from './list-item/list-item.component';
   imports: [
     CommonModule,
     RouterModule
-  ]
+  ],
+  providers: [PageDataService]
 })
 export class SharedComponentsModule { }

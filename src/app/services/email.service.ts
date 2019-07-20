@@ -27,7 +27,7 @@ export class EmailService {
 
   }
 
-  excluir(id: String) {
+  excluir(id: string): Observable<Object> {
     console.log(this.url + '/' + id);
     return this.httpClient
       .delete(this.url + '/' + id, this.headersAuth)

@@ -73,7 +73,7 @@ export class CaixaDeEntradaComponent implements OnInit {
       .subscribe(
         resposta => {
           console.log(resposta)
-          this.emailList = this.emailList.filter(email => email.id != id)
+          this.carregarEmails()
         },
         erro => console.error(erro)
       )
